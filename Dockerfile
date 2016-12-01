@@ -55,7 +55,7 @@ RUN wget http://download.qt.io/official_releases/qt/5.6/5.6.1/single/qt-everywhe
     make -j $(grep -c ^processor /proc/cpuinfo) && \
     make install && \
     mkdir -p /etc/xdg/qtchooser && \
-    printf "/usr/local/Qt-5.6.1/bin\n/usr/local/Qt-5.6.1/lib" > /etc/xdg/qtchooser/qt56.conf && \
+    printf "/usr/local/Qt-5.6.1/bin\n/usr/local/Qt-5.6.1/lib" > /etc/xdg/qtchooser/qt56.conf
 
 ADD build.sh /app/onlyoffice/build.sh
 
