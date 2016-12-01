@@ -36,7 +36,13 @@ RUN apt-get -y update && \
         git \
         subversion \
         python-pip && \
-    wget http://download.qt.io/official_releases/qt/5.6/5.6.1/single/qt-everywhere-opensource-src-5.6.1.tar.gz && \
+    npm install -g npm && \
+    npm install -g grunt-cli && \
+    npm cache clean && \
+    pip install awscli && \
+    rm -rf /var/lib/apt/lists/*
+    
+RUN wget http://download.qt.io/official_releases/qt/5.6/5.6.1/single/qt-everywhere-opensource-src-5.6.1.tar.gz && \
     tar -xvzf qt-everywhere-opensource-src-5.6.1.tar.gz && \
     rm qt-everywhere-opensource-src-5.6.1.tar.gz && \
     cd qt-everywhere-opensource-src-5.6.1 && \
@@ -49,12 +55,7 @@ RUN apt-get -y update && \
     make -j $(grep -c ^processor /proc/cpuinfo) && \
     make install && \
     mkdir -p /etc/xdg/qtchooser && \
-    printf "/usr/local/Qt-5.6.0/bin\n/usr/local/Qt-5.6.0/lib" > /etc/xdg/qtchooser/qt56.conf && \
-    npm install -g npm && \
-    npm install -g grunt-cli && \
-    npm cache clean && \
-    pip install awscli && \
-    rm -rf /var/lib/apt/lists/*
+    printf "/usr/local/Qt-5.6.1/bin\n/usr/local/Qt-5.6.1/lib" > /etc/xdg/qtchooser/qt56.conf && \
 
 ADD build.sh /app/onlyoffice/build.sh
 
